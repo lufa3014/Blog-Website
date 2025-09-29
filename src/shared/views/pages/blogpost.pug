@@ -1,0 +1,70 @@
+extends /layouts/layout.pug
+include /mixins/comment.pug
+
+block head
+  - var firstImageSection = post.body && post.body.find(section => section.image)
+  link(rel="stylesheet", href="/styles/pages/blogpost.css")
+  meta(property="og:title", content=post.title)
+  if firstImageSection
+    meta(property="og:image", content=firstImageSection.image)
+  else
+    meta(property="og:image", content="/logo.png")
+  meta(property="og:type", content="article")
+  meta(property="og:url", content=`https://example.com/blogpost/${post.id}`)
+
+block content
+  .blogpost-page-background(role="main")
+    .blogpost-page
+      - const h1id = `post-${post.id}-title`
+      h1.blogpost-title(id=h1id)= post.title
+      small.blogpost-meta
+        | Geschrieben von 
+        a.blogpost-author-link(href=`/profile/${post.meta.author_id}`)= post.meta.author
+        |  am 
+        time(datetime=new Date(post.meta.date).toISOString())= new Date(post.meta.date).toLocaleDateString('de-DE')
+
+      section.blogpost-content(role="region" aria-labelledby="content-heading")
+        h2.blogpost-heading#content-heading Inhalt
+        if post.body && post.body.length
+          each section, i in post.body
+            - const isTwoCol = section.layout === 'two-column'
+            - const isSideBySide = section.layout === 'one-column' && section.image
+            - const outerClass = `blogpost-section ${isTwoCol ? 'two-column' : ''}`
+            - const innerClass = `blogpost-section-inner${isSideBySide ? ' with-image-side-by-side' : ''}`
+            - const secId = `section-${post.id}-${i}`
+            article(class=outerClass aria-labelledby=`${secId}-title`)
+              h3(id=`${secId}-title`)= section.subtitle
+              div(class=innerClass)
+                if section.layout === 'two-column' && section.image
+                  - const floatClass = Math.random() > 0.5 ? 'float-left' : 'float-right'
+                  p.blogpost-text
+                    img.zoomable(src=section.image, alt=(section.subtitle ? section.subtitle : 'Bild'), class=floatClass)
+                    | #{section.text}
+                else if section.image
+                  p.blogpost-text= section.text
+                  img.zoomable.blogpost-image(src=section.image, alt=(section.subtitle ? section.subtitle : 'Bild'))
+                else
+                  p.blogpost-text= section.text
+        else
+          p Kein Inhalt vorhanden.
+
+      section.blogpost-comments(role="region" aria-labelledby="comments-heading")
+        h2.blogpost-heading#comments-heading Kommentare
+        if post.comments && post.comments.length
+          each comment, index in post.comments
+            +comment(comment, index, post.id, true, true)
+        else
+          p Noch keine Kommentare vorhanden.
+
+      if currentUser
+        div.comment-form-wrapper
+          h2.blogpost-heading#comment-form-heading Kommentar schreiben
+          form.comment-form(method="POST", action=`/blogpost/${post.id}/comment` aria-labelledby="comment-form-heading")
+            label(for="comment-text") Dein Kommentar
+            textarea#comment-text(name="text", required, rows="4", cols="40", aria-required="true")
+            button(type="submit") Absenden
+      else
+        p.blogpost-login-hint
+          | Bitte 
+          a(href="/login") einloggen
+          | , um einen Kommentar zu schreiben.

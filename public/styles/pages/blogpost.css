@@ -1,0 +1,376 @@
+/* Hintergrundbild mit leichtem Zoom-Effekt */
+.blogpost-page-background {
+  background: url('/backgrounds/blogPost1.jpg') repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Hauptcontainer mit Weiß-Overlay und Schatten */
+.blogpost-page {
+  background-color: var(--container-color);
+  backdrop-filter: blur(6px);
+  padding: 40px 20px;
+  box-shadow: 0 0 20px var(--box-shadow);
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.blogpost-page:hover {
+  box-shadow: 0 0 20px var(--blossom-hover-glow-color);
+  outline: 1px solid var(--blossom-color);
+}
+
+/* Blogtitel oben */
+.blogpost-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 0.3rem;
+  color: var(--layout-text-color);
+  border-bottom: 3px solid var(--blossom-color);
+}
+
+/* Einheitliche Abschnittsüberschriften */
+.blogpost-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 1rem auto 0.3rem auto;
+  color: #4a2b33;
+  display: block;
+  width: fit-content;
+}
+
+/* Autor und Datum */
+.blogpost-meta {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+/* Bereich für Inhaltsabschnitte */
+.blogpost-content {
+  padding-inline: 10px;
+}
+
+/* Inhaltabschnittscontainer */
+.blogpost-section {
+  margin-bottom: 2.5rem;
+  overflow: visible;
+  padding-inline: 10px;
+  box-sizing: border-box;
+}
+
+/* Inhaltsteil Innen mit Bild + Text */
+.blogpost-section-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Textkörper */
+.blogpost-text {
+  margin: 0;
+  position: relative;
+  text-align: left;
+}
+
+/* Float-Clearing für Text */
+.blogpost-text::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* Einzelbild unter dem Text oder zentriert */
+.blogpost-image {
+  width: 100%;
+  max-width: 200px;
+  max-height: 60vh;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px var(--box-shadow);
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+/* Float-Bilder (linke oder rechte Spalte) */
+.blogpost-text img.float-left,
+.blogpost-text img.float-right {
+  max-width: 25%;
+  min-width: 120px;
+  max-height: 250px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.blogpost-text img.float-left {
+  float: left;
+  margin: 0 1rem 1rem 0;
+}
+
+.blogpost-text img.float-right {
+  float: right;
+  margin: 0 0 1rem 1rem;
+}
+
+.blogpost-author-link {
+  color: var(--blossom-color);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.blogpost-author-link:hover,
+.blogpost-author-link:focus {
+  outline: none;
+  color: var(--text-hover);
+}
+
+/* Kommentarbereich */
+.blogpost-comments {
+  margin-top: 2rem;
+  padding-inline: 10px;
+}
+
+.blogpost-comments h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Einzelner Kommentarblock */
+.blogpost-comments .comment-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  background: var(--secondary-color);
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px var(--box-shadow);
+}
+
+.comment-wrapper:hover {
+  outline: 2px solid var(--blossom-color);
+  box-shadow: 0 0 12px var(--blossom-hover-glow-color);
+  transform: scale(1.01);
+  transition: all 0.2s ease-in-out;
+  z-index: 1; /* optional: überlappt andere */
+  position: relative; /* notwendig für z-index */
+}
+
+
+/* Bild- und Avatarreihen */
+.image-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.commentImage {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.comment-avatar1 {
+  display: none;
+}
+
+.comment-avatar2 {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  max-width: 40px;
+  height: auto;
+}
+
+/* Kommentartext und Aktionen */
+.comment-bottom {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.comment-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Kommentarfeld und Eingabe */
+.comment-form-wrapper {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  padding-inline: 10px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.comment-form textarea {
+  min-height: 100px;
+  font-size: 1rem;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  resize: vertical;
+}
+
+.comment-form textarea:focus {
+  outline: none;
+  border: 1px solid var(--blossom-color-hover);
+  box-shadow: 0 0 6px var(--blossom-hover-glow-color);
+}
+
+.comment-form button[type="submit"] {
+  font-weight: bold;
+  background-color: var(--blossom-color);
+  color: var(--secondary-color);
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+}
+
+.comment-form button[type="submit"]:hover {
+  background-color: var(--blossom-hover-background-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px var(--blossom-hover-shadow);
+}
+
+/* Hinweis für nicht eingeloggte Nutzer */
+.blogpost-login-hint {
+  text-align: center;
+  font-style: italic;
+  margin-top: 1.5rem;
+}
+
+.blogpost-login-hint a {
+  color: var(--blossom-color);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.blogpost-login-hint a:hover,
+.blogpost-login-hint a:focus {
+  outline: none;
+  color: var(--text-hover);
+}
+
+.btn-reset {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.comment-rating {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.comment-rating :hover,
+.comment-rating :focus {
+  outline: none;
+  color: var(--blossom-color);
+}
+
+@media (min-width: 768px) {
+  .blogpost-section-inner.with-image-side-by-side {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .blogpost-section-inner.with-image-side-by-side .blogpost-image {
+    flex: 1;
+    max-width: 160px;
+    margin: 0;
+    max-height: 60vh;
+  }
+
+  .blogpost-section-inner.with-image-side-by-side .blogpost-text {
+    flex: 2;
+    margin: 0;
+  }
+
+  .blogpost-page-background {
+    padding: 40px 20px;
+  }
+
+  .blogpost-page {
+    max-width: 1200px;
+    width: 90%;
+    padding: 20px 40px;
+    border-radius: 8px;
+  }
+
+  .blogpost-section.two-column {
+    display: block;
+  }
+}
+
+/* Mobile-Optimierung für kleine Bildschirme */
+@media (max-width: 400px) {
+  .blogpost-page,
+  .comment-wrapper,
+  .blogpost-title,
+  .blogpost-text,
+  .comment-body,
+  .blogpost-meta,
+  .blogpost-comments,
+  .blogpost-section,
+  .comment-text-link {
+    max-width: 100%;
+    box-sizing: border-box;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .blogpost-title {
+    font-size: 1.5rem;
+    word-break: break-word;
+  }
+
+  .comment-wrapper {
+    padding: 1rem;
+    overflow-x: hidden;
+  }
+
+  .comment-body {
+    flex-wrap: wrap;
+  }
+
+  .comment-bottom {
+    flex-wrap: wrap;
+  }
+
+  .comment-text-link {
+    word-break: break-word;
+  }
+
+  .votes,
+  .actions,
+  .bubble-tail {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}

@@ -1,0 +1,41 @@
+//- Basis-Layout für alle Seiten – wird von index.pug, login.pug usw. verwendet
+doctype html
+html(lang="de")
+  head
+    //- Globale Scripts – immer aktiv
+    script(src="/js/pug.js", defer)
+    script(type="module", src="/js/client/client.js", defer)
+
+    //- Platz für individuelle head-Inhalte (z. B. Seitentitel, Stylesheets)
+    block head
+
+    //- Basis-Stylesheets
+    link(rel="stylesheet", href="/styles/base.css")
+    link(rel="stylesheet", href="/styles/layout.css")
+    link(rel="stylesheet", href="/styles/components/scrollToTop.css")
+    link(rel="stylesheet", href="/styles/components/imageZoom.css")
+
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Blossom-Log
+
+    link(rel="icon", href="/logo.png", type="image/png")
+
+    //- Google Material Icons (z. B. für Like/Upvote-Symbole)
+    link(href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined", rel="stylesheet")
+
+  body
+    .page-wrapper
+      //- Header (Navigation, Login-Status etc.)
+      include /partials/header.pug
+
+      //- Hauptbereich – wird durch die jeweilige Seite gefüllt
+      main
+        block content
+
+      //- Footer mit Uhrzeit und Impressum
+      include /partials/footer.pug
+
+    //- Scroll-to-Top-Button (außerhalb .page-wrapper, damit immer sichtbar)
+    include /partials/scrollToTop.pug
+      

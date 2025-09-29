@@ -1,0 +1,11 @@
+//- Zeigt Vorschau eines Blogposts mit Titel, Autor, Datum und kurzem Textausschnitt
+mixin blogPreview(post, isNewPost)
+  article(class=`blogpost-preview ${isNewPost?'hidden': ''}`)
+    h3
+      a(href=`/blogpost/${post.id}`)= post.title
+    small
+      | Geschrieben von 
+      a(href=`/profile/${post.meta.author_id}`)= post.meta.author
+      |  am #{new Date(post.meta.date).toLocaleDateString('de-DE')}
+    p= post.body && post.body.length ? post.body[0].text.substring(0, 400) + "..." : 'Kein Text vorhanden.'
+

@@ -1,0 +1,54 @@
+@import url('./fonts.css');
+@import url('./variables.css');
+
+/* Grundstruktur / Reset */
+html, body {
+  width: 100%; /* Volle Breite */
+  height: auto; /* Automatische Höhe */
+  overflow-y: auto; /* Immer scrollbar */
+  margin: 0; /* Kein Außenabstand */
+  padding: 0; /* Kein Innenabstand */
+}r
+
+body {
+  box-sizing: border-box; /* Einheitliches Box-Modell */
+}
+
+main {
+  flex: 1; /* Hauptinhalt soll wachsen */
+}
+
+/* Typografie-Standard */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25em; /* Angenehmer Zeilenabstand */
+  margin: 0; /* Kein Standardabstand */
+}
+
+p {
+  margin: 0; /* Kein Absatzabstand */
+}
+
+/* Schriftart-Zuweisung */
+html, body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+}
+
+nav, .navbar, .text-wrapper {
+  font-family: var(--font-nav);
+}
+
+/* Fluid Typography */
+html {
+  font-size: clamp(14px, 1.5vw, 18px);
+}
+
+.title {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+
+

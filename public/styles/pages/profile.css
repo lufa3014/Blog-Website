@@ -1,0 +1,394 @@
+/* hidden speziell für die Formulare */
+.profile-edit form.hidden,
+.skill-forms form.hidden {
+  display: none;
+}
+
+/* Hintergrundbild und Basislayout */
+.profile-background {
+  background: url('/backgrounds/profile1.jpg') repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Rahmen für das Hauptprofil */
+.profile {
+  border-radius: var(--border-radius);
+  width: 90vw;
+  max-width: 1200px;
+  min-width: 320px;
+  padding: 30px;
+  background-color: var(--container-color);
+  line-height: 1.6;
+  box-sizing: border-box;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 20px var(--box-shadow);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.profile:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 20px var(--blossom-hover-glow-color);
+  outline: 1px solid var(--blossom-color);
+}
+
+/* Hauptüberschrift */
+.profile > h1 {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Flexbox-Grundlayout für Profilblöcke (Flexbox-Nachweis) */
+.profile-grid-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Struktur jeder Profilspalte */
+.profile-grid-3 .profile-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1 1 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Avatar zentrieren */
+.avatar-only {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-only figure {
+  margin: 0 auto;
+}
+
+.avatar-only img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+}
+
+/* Anzeige der persönlichen Infos */
+.profile-info {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 16px;
+  text-align: left;
+  padding-inline: 0;
+  box-sizing: border-box;
+}
+
+.profile-info p {
+  font-size: 1rem;
+  color: #333;
+  margin: 6px 0;
+  text-align: left;
+}
+
+.profile-info span {
+  font-weight: bold;
+}
+
+/* Edit-Bereich */
+.profile-edit {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Bearbeiten-Button */
+.profile-edit button {
+  background-color: var(--blossom-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 0.5rem 1rem; 
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto 0;
+  display: block;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Hover-Effekt für Bearbeiten-Button */
+.profile-edit button:hover,
+.profile-edit button:focus {
+  outline: none;
+  background-color: var(--blossom-hover-background-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px var(--blossom-hover-shadow);
+}
+
+/* Aktiver Zustand: leuchtender Effekt */
+.profile-edit button.active {
+  background-color: var(--secondary-color);
+  color: var(--blossom-color);
+  border: 2px solid var(--blossom-color);
+  box-shadow: 0 0 6px var(--blossom-hover-shadow);
+  transform: scale(1.02);
+  margin: 0 auto 37px;
+}
+
+.profile-edit button.active:focus-visible {
+  color: var(--blossom-hover-background-color);
+  border: 2px solid var(--blossom-hover-background-color);
+  animation: blossomBlinkGlow 1s ease-in-out infinite;
+  outline: none;
+}
+
+/* Formularstruktur */
+.profile-edit form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+  margin-inline: auto;
+}
+
+/* Eingabefelder */
+.login-input {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 16px;
+}
+
+.login-input label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 6px;
+  text-align: left;
+  width: 100%;
+}
+
+.login-input input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: #fff;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Fokus & Hover für Input */
+.login-input input:hover,
+.login-input input:focus {
+  border-color: var(--blossom-color);
+  box-shadow: 0 0 8px var(--blossom-hover-shadow);
+  outline: none;
+}
+
+/* Speichern-Button (Submit) */
+input[type="submit"] {
+  background-color: var(--blossom-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+  margin: 10px auto 0;
+  display: block;
+  box-sizing: border-box;
+  max-width: 400px;
+}
+
+input[type="submit"]:hover, 
+input[type="submit"]:focus {
+  outline: none;
+  background-color: var(--blossom-hover-background-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px var(--blossom-hover-shadow);
+}
+
+/* Skillliste */
+#skill-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profile ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  text-align: left;
+}
+
+.profile li {
+  margin: 0.3rem 0;
+}
+
+/* Skill-Bearbeiten-Bereich */
+.skill-forms {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Container der Skill-Zeile */
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Optional: Style für den Button */
+.skill-item button.delete {
+  background-color: var(--blossom-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 4px;
+  margin-left: 30px;
+  padding: 4px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.skill-item button.delete:hover,
+.skill-item button.delete:focus {
+  outline: none;
+  background-color: var(--blossom-hover-background-color);
+  box-shadow: 0 0 6px var(--blossom-hover-shadow);
+}
+
+/* Feinschliff für sehr kleine Geräte */
+@media (min-width: 480px) {
+  .profile > h1 {
+    font-size: 1.6rem;
+  }
+
+  .avatar-only img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Flexbox-Layout-Erweiterung */
+@media (min-width: 768px) {
+  .profile-grid-3 {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .profile-grid-3 .profile-block {
+    align-items: flex-start;
+    flex: 1 1 33%;
+  }
+
+  .profile-grid-3 .profile-block h2 {
+    text-align: left;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 0.5rem;
+  }
+
+  .profile-grid-3 .profile-block:nth-of-type(2) {
+    order: 0;
+  }
+
+  .avatar-only {
+    order: 1;
+  }
+
+  .profile-grid-3 .profile-block:nth-of-type(3) {
+    order: 2;
+  }
+
+  .profile-info {
+    max-width: 400px;
+    margin: 0 auto 16px;
+    padding-inline: 0;
+    text-align: left;
+  }
+
+  .profile-info p {
+    padding-left: 0;
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .profile-block > section {
+    width: 100%;
+  }
+
+  .skill-item button.delete {
+    margin-left: auto;
+  }
+}
+
+/* Größere Bilder & andere Anordnung */
+@media (min-width: 1200px) {
+  .avatar-only img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .login-input {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .login-input label {
+    white-space: nowrap;
+    width: 140px;
+    text-align: right;
+    margin-bottom: 0;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .skill-forms label {
+    width: 128px;  
+  }
+
+  .login-input input {
+    flex: 1;
+    height: 2.5rem;
+    margin: 0;
+    max-width: 300px;
+  }
+}
+
+
+

@@ -1,0 +1,24 @@
+header
+  figure.logo
+    img(src="/logo.png", alt="Logo", width="115")
+    h1.title 
+      span.blossom-title Blossom
+      span.log-title Log 
+
+  nav
+      ul.navbar
+        li.sign
+          a.nav-link(href="/")
+            span.text-wrapper Startseite
+        if currentUser
+          li.sign
+            a.nav-link(href=`/profile/${currentUser.id}`)
+              span.text-wrapper Profil
+          li.sign
+            form(method="POST", action="/login/logout")
+              a.nav-link(href="#", onclick="event.preventDefault(); this.closest('form').submit()")
+                span.text-wrapper Logout
+        else
+          li.sign
+            a.nav-link(href="/login")
+              span.text-wrapper Login

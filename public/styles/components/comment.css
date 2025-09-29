@@ -1,0 +1,128 @@
+/* Kommentarfeld (Board) */
+.comment-board {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #444;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Wrapper = Avatar + Blase */
+.comment-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 320px;
+  height: auto;
+}
+
+/* Avatar */
+.comment-avatar {
+  width: 60px;
+  object-fit: contain;
+}
+
+/* Sprechblase */
+.comment {
+  position: relative;
+  background: var(--secondary-color);
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+  color: #333;
+  max-width: 240px;
+  min-width: 180px;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* Zipfel */
+.bubble-tail {
+  position: absolute;
+  left: -10px;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid var(--secondary-color);
+}
+.bubble-tail::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 16px solid var(--secondary-color);
+}
+
+/* Textformatierung */
+.comment p,
+.comment a {
+  color: #333;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.comment p:first-child {
+  font-weight: bold;
+}
+
+.comment a:hover,
+.comment a:focus {
+  outline:none;
+  color: var(--text-hover);
+}
+
+/* Link für Kommentartext */
+.comment-text-link {
+  display: block;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  text-decoration: none;
+  line-height: 1.4;
+  text-align: justify;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .comment-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px;
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .comment-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 90vw;
+    justify-content: flex-start;
+  }
+
+  .comment-avatar {
+    width: 50px;
+  }
+
+  .comment {
+    max-width: 85%;
+    padding: 16px;
+  }
+
+  .bubble-tail {
+    left: -8px;
+    top: 16px;
+  }
+}
+

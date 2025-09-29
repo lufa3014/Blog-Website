@@ -1,0 +1,170 @@
+/* Hintergrundbild mit Verlauf */
+.login-background {
+  background: url('/backgrounds/login.jpg') no-repeat center center;
+  background-size: cover;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.login-background::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 100%);
+}
+
+/* Login-Box */
+.login-wrapper {
+  background-color: var(--container-color);
+  backdrop-filter: blur(6px); /* Ja nein? */
+  border-radius: var(--border-radius);
+  padding: 10px 40px 30px;
+  box-shadow: 0 0 20px var(--box-shadow);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.login-wrapper:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 20px var(--blossom-hover-glow-color);
+  outline: 1px solid var(--blossom-color);
+}
+
+/* Titel & Fehlermeldung */
+.login-wrapper h1 {
+  text-align: center;
+  font-size: 300%;
+  color: var(--log-color);
+  margin: 0;
+}
+
+.error {
+  color: #EA5668;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Eingabefelder & Labels */
+.login-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login-input label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 120%;
+  color: #333;
+  text-align: left;
+}
+
+.login-wrapper input[type="text"],
+.login-wrapper input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 100%;
+  border: 1px solid var(--border);
+  background-color: var(--secondary-color);
+  transition: box-shadow 0.4s ease, border-color 0.3s ease;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+/* Fokus + Hover Effekte */
+.login-wrapper input[type="text"]:focus,
+.login-wrapper input[type="password"]:focus {
+  box-shadow: 0 0 12px var(--blossom-hover-glow-color);
+  border-color: var(--blossom-color);
+  outline: none;
+}
+
+.login-wrapper input[type="text"]:hover,
+.login-wrapper input[type="password"]:hover {
+  border-color: var(--blossom-color);
+  box-shadow: 0 0 6px var(--blossom-hover-shadow);
+}
+
+/* Login-Button */
+.login-wrapper input[type="submit"] {
+  margin-top: 20px;
+  background-color: var(--blossom-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 120%;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  width: 100%;
+  padding: 0;           
+  height: 2.5rem;   
+  line-height: 2.5rem;    
+}
+
+/* Button Hover */
+.login-wrapper input[type="submit"]:hover,
+.login-wrapper input[type="submit"]:focus {
+  outline: none;
+  background-color: var(--blossom-hover-background-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px var(--blossom-hover-shadow);
+}
+
+@media (min-width: 768px) {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-inputs {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .login-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* sorgt dafür, dass Label & Input auf gleicher Höhe sind */
+    margin: 16px 0;
+  }
+
+  .login-input label {
+    width: 180px;
+    text-align: right;
+    margin: 0;                 
+    line-height: normal;       /* zurücksetzen für saubere Zentrierung */
+    display: flex;
+    align-items: center;       /* vertikal mittig im Flex-Container */
+    height: 2.5rem;            /* gleiche Höhe wie Input */
+  }
+
+  .login-input input {
+    flex: 1;
+    height: 2.5rem;            /* gleiche Höhe wie Label */
+    margin: 0;
+  }
+
+  .login-wrapper input[type="submit"] {
+    align-self: center;
+    width: auto;
+    height: 2.5rem;
+    padding: 0 40px;           /* horizontal Padding für Größe */
+    font-size: 1.1rem;
+    line-height: 2.5rem;       /* vertikale Zentrierung des Texts */
+    border-radius: 6px;
+  }
+}
+
+
+
+

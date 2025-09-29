@@ -1,0 +1,237 @@
+@import url('../components/blogpostPreview.css');
+@import url('../components/comment.css');
+
+/* Seitenlayout mit Hintergrund */
+.page-container {
+  margin: 0;
+  padding: 20px;
+  background: url('/backgrounds/landingPage.jpg') center center no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Stil für alle Inhaltsboxen */
+section {
+  width: 100%;
+  max-width: 1400px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--container-color);
+  backdrop-filter: blur(6px);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 20px var(--box-shadow);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+section:hover {
+  box-shadow: 0 0 20px var(--blossom-hover-glow-color);
+  outline: 1px solid var(--blossom-color);
+}
+
+/* Überschriften-Design */
+section h2,
+.comment-board h2,
+.landing-page h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #333;
+}
+
+/* Kommentar-Überschrift */
+.comment-board h2 {
+  color: var(--layout-text-color);
+  margin: 2rem auto;
+}
+
+/* Rahmen für Suchbox */
+.search {
+  background-color: var(--container-color);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px var(--box-shadow);
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Hovereffekt für Suchbox */
+.search:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 20px var(--blossom-hover-glow-color);
+  border: 1px solid var(--blossom-color);
+  outline: none;
+}
+
+/* Layout für Formular innerhalb der Suche */
+.search form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+/* Eingabefeld in der Suchbox */
+.search input[type="text"] {
+  flex: 1;
+  min-width: 75px;
+}
+
+/* Formular-Layout allgemein */
+form[action="/"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+/* Formularbeschriftung */
+form[action="/"] label {
+  font-weight: bold;
+}
+
+/* Einheitliche Schrift */
+form[action="/"] label,
+form[action="/"] input,
+form[action="/"] select {
+  font-size: 1rem;
+}
+
+/* Textfeldstil */
+form[action="/"] input[type="text"] {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+form[action="/"] select:focus,
+form[action="/"] input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 20px var(--blossom-hover-glow-color);
+  border: 1px solid var(--blossom-color);
+}
+
+/* Buttonstil */
+form[action="/"] input[type="submit"] {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--blossom-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Button Hover */
+form[action="/"] input[type="submit"]:hover,
+form[action="/"] input[type="submit"]:focus  {
+  outline: none;
+  box-shadow: 0 0 20px var(--blossom-hover-glow-color);
+  border: 1px solid var(--blossom-color);
+  background-color: var(--blossom-hover-background-color);
+}
+
+/* Hovereffekt für Seitenlinks */
+.pagination-controls a:hover,
+.pagination-controls a:focus {
+  outline:none;
+  color: var(--blossom-text-hover);
+}
+
+/* Kommentarbereich mit Texturrahmen */
+.comment-board {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: none;
+  min-height: 300px;
+  background: linear-gradient(120deg, #fff0f5, #f9d5ec, #f9d5ec, #f7b7ee, #fd8ae4ea);
+  border-bottom: 20px solid transparent;
+  border-top: 20px solid transparent;
+  border-image: url('/textures/wood.jpg') 20 round;
+  border-image-slice: 20 0 20 0;
+}
+
+/* Paginierungs-Container */
+.pagination-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Rahmen für Seitenwechsel */
+.pagination-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--container-color);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px var(--box-shadow);
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Hovereffekt für Seitenwechselbox */
+.pagination-row:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 20px var(--blossom-hover-glow-color);
+  border: 1px solid var(--blossom-color);
+  outline: none;
+}
+
+/* Stil für Seitensteuerung */
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Link-Stil */
+.pagination-controls a {
+  color: #444;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  form[action="/"] {
+    flex-wrap: nowrap;
+  }
+
+  section {
+    padding: 3rem;
+  }
+
+  section h2,
+  .comment-board h2,
+  .landing-page h1 {
+    font-size: 2.8rem;
+  }
+}
+
+/* Seitenrand bei kleinen Geräten */
+@media (max-width: 600px) {
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "dist/server",
+        "target": "ES2022",
+        "types": ["node"],
+        "typeRoots": ["./src/server/types", "./node_modules/@types"],
+        "noEmit": true,
+        "resolveJsonModule": true, // Für Scrollt to Top
+        "esModuleInterop": true // Für Scroll to Top
+    },
+    "include": ["src/server"]
+}

@@ -1,0 +1,33 @@
+extends /layouts/layout.pug
+
+block head 
+  link(rel="stylesheet", href="/styles/pages/login.css")
+
+block content
+  .login-background
+    .login-wrapper
+      h1 Login
+
+      if error
+        //- Fehlertext semantisch als Alert
+        p.error(role="alert") #{error}
+
+      form(method="POST", action="/login", aria-labelledby="login-heading")
+        .login-inputs
+          //- Benutzername
+          - var labelFor = 'author'
+          - var labelText = 'Benutzername:'
+          - var inputType = 'text'
+          - var inputName = 'author'
+          - var inputValue = ''
+          include ../mixins/formField.pug
+
+          //- Passwort
+          - var labelFor = 'password'
+          - var labelText = 'Passwort:'
+          - var inputType = 'password'
+          - var inputName = 'password'
+          - var inputValue = ''
+          include ../mixins/formField.pug
+
+        input(type="submit", value="Anmelden")

@@ -1,0 +1,63 @@
+mixin comment(comment, index, postId, withRating=false, blogPost)
+  - const avatar = comment.avatar ?? `/avatars/head${Math.floor(Math.random() * 3) + 1}.jpg`
+  - const blogId = postId
+  - const cid = `comment-${blogId ?? 'x'}-${index}`
+
+  .comment-wrapper(role="article" aria-labelledby=`${cid}-author` aria-describedby=`${cid}-text ${cid}-votes`)
+    if blogPost
+      .image-row
+        img.zoomable.comment-avatar1(src=avatar, alt="" aria-hidden="true")
+        - const commentImage = `/commentImages/commentImage${Math.floor(Math.random() * 9) + 1}.jpg`
+        img.zoomable.commentImage(src=commentImage, alt="Kommentarbild")
+
+    else 
+      img.zoomable.comment-avatar(src=avatar, alt="" aria-hidden="true")
+
+    .comment
+      span.bubble-tail(aria-hidden="true")
+      if blogPost
+        .comment-bottom
+          img.zoomable.comment-avatar2(src=avatar, alt="" aria-hidden="true")
+          p
+            | Kommentar von 
+            a.blogpost-author-link(
+              id=`${cid}-author`
+              href=`/profile/${comment.author_id}`
+            )= comment.author
+            |  (Votes: 
+            span(id=`${cid}-votes` aria-live="polite")= comment.votes
+            | )
+
+        span.comment-text-link(
+          id=`${cid}-text`
+        )= (comment.text || '').substring(0, 120) + '...'
+
+        if withRating
+          .comment-rating(role="group" aria-label="Kommentar bewerten")
+            form(method="POST", action=`/blogpost/${blogId}/comment/${index}/upvote`)
+              button(type="submit" aria-label="Kommentar upvoten")
+                span.material-symbols-outlined(aria-hidden="true") thumb_up
+
+            form(method="POST", action=`/blogpost/${blogId}/comment/${index}/downvote`)
+              button(type="submit" aria-label="Kommentar downvoten")
+                span.material-symbols-outlined(aria-hidden="true") thumb_down
+
+      else 
+        if blogId
+          a.comment-text-link(
+            id=`${cid}-text`
+            href=`/blogpost/${blogId}#comment-${index}`
+            aria-label="Zum vollständigen Kommentar springen"
+          )= (comment.text || '').substring(0, 120) + '...'
+        else
+          span.comment-text-link(style="color:red") Fehler: Kein Blogpost!
+
+        if withRating
+          .comment-rating(role="group" aria-label="Kommentar bewerten")
+            form(method="POST", action=`/blogpost/${blogId}/comment/${index}/upvote`)
+              button(type="submit" aria-label="Kommentar upvoten")
+                span.material-symbols-outlined(aria-hidden="true") thumb_up
+
+            form(method="POST", action=`/blogpost/${blogId}/comment/${index}/downvote`)
+              button(type="submit" aria-label="Kommentar downvoten")
+                span.material-symbols-outlined(aria-hidden="true") thumb_down

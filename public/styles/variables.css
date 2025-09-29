@@ -1,0 +1,39 @@
+:root {
+    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --font-nav: 'Playfair Display', serif;
+
+    --blossom-color: #FA93C9;
+    --log-color: #723B38;
+    --secondary-color: #ffffff;
+
+    --container-color: rgba(255, 255, 255, 0.8);
+    --layout-text-color: #6b3e3e;
+
+    --blossom-hover-glow-color: rgba(255, 133, 193, 0.7);
+    --blossom-hover-shadow: rgba(255, 133, 193, 0.3);
+    --blossom-hover-background-color: #ff5ca8;
+    --blossom-text-hover: #FA93C9;
+    --text-hover: #b64274; 
+
+    --border: #ccc;
+    --box-shadow: rgba(0, 0, 0, 0.1);
+
+    --border-radius: 12px;
+}
+
+@keyframes blossomBlinkGlow {
+  0%, 100% {
+    color: var(--blossom-color);
+    text-shadow:
+      0 0 5px var(--blossom-hover-glow-color),
+      0 0 10px var(--blossom-hover-glow-color);
+  }
+  50% {
+    color: var(--blossom-text-hover);
+    text-shadow:
+      0 0 15px var(--blossom-hover-glow-color),
+      0 0 25px var(--blossom-hover-glow-color);
+  }
+}
+

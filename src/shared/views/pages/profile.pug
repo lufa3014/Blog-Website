@@ -1,0 +1,92 @@
+extends /layouts/layout.pug
+
+block head 
+  link(rel="stylesheet", href="/styles/pages/profile.css")
+
+block content
+  .profile-background
+    .profile(data-user-id=user.id role="main")
+      h1#profile-heading= ownProfile ? 'Dein Profil' : 'Profil von ' + user.author
+
+      .profile-grid-3
+        //- Avatar 
+        include ../partials/profile-avatar.pug
+
+        //- Persönliche Daten 
+        .profile-block
+          section(aria-labelledby="data-heading")
+            h2#data-heading Daten
+            - var firstname = user.firstname
+            - var lastname  = user.lastname
+            - var author    = user.author
+            include ../partials/profile-info.pug
+
+          if ownProfile
+            div.profile-edit
+              button(type="button", data-toggle-target="profile-data-form" aria-controls="profile-data-form" aria-expanded="false") Daten bearbeiten
+
+              form#profile-data-form.hidden(method="POST", action=`/profile/${user.id}`, aria-labelledby="data-heading")
+                - var labelFor = 'firstname'
+                - var labelText = 'Vorname:'
+                - var inputType = 'text'
+                - var inputName = 'firstname'
+                - var inputValue = user.firstname
+                include ../mixins/formField.pug
+
+                - var labelFor = 'lastname'
+                - var labelText = 'Nachname:'
+                - var inputType = 'text'
+                - var inputName = 'lastname'
+                - var inputValue = user.lastname
+                include ../mixins/formField.pug
+
+                - var labelFor = 'avatar'
+                - var labelText = 'Avatar-URL:'
+                - var inputType = 'text'
+                - var inputName = 'avatar'
+                - var inputValue = user.avatar
+                include ../mixins/formField.pug
+
+                - var labelFor = 'author'
+                - var labelText = 'Benutzername:'
+                - var inputType = 'text'
+                - var inputName = 'author'
+                - var inputValue = user.author
+                include ../mixins/formField.pug
+
+                input(type="submit", value="Daten speichern")
+
+        //- Skills
+        .profile-block
+          section(aria-labelledby="skills-heading")
+            h2#skills-heading Fähigkeiten
+            if user.skills && user.skills.length
+              ul#skill-list(role="list")
+                each skill in user.skills
+                  li.skill-item(data-skill=skill role="listitem")
+                    span.skill-name= skill
+                    if ownProfile
+                      button.delete(type="button" aria-label=`Fähigkeit ${skill} löschen`) Löschen
+            else
+              p#skill-list Keine Fähigkeiten eingetragen.
+
+          if ownProfile
+            div.profile-edit
+              button(type="button", data-toggle-target="skill-edit-form" aria-controls="skill-edit-form" aria-expanded="false") Fähigkeiten bearbeiten
+              .skill-forms
+                form#skill-edit-form.hidden(method="POST", action=`/profile/${user.id}/skill`, aria-labelledby="skills-heading")
+                  input(type="hidden", name="method", value="post")
+
+                  - var labelFor = 'skill'
+                  - var labelText = 'Bezeichnung:'
+                  - var inputType = 'text'
+                  - var inputName = 'skill'
+                  - var inputValue = ''
+                  include ../mixins/formField.pug
+
+                  input(type="submit", value="Hinzufügen")
+
+                template#skill-template
+                  li.skill-item(data-skill="" role="listitem")
+                    span.skill-name Platzhalter
+                    button.delete(type="button" aria-label="Fähigkeit löschen") Löschen

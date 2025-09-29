@@ -1,0 +1,42 @@
+/* Basisstil für Scroll-to-Top-Button */
+.scroll-to-top {
+  position: fixed;                  /* Bleibt immer sichtbar im Viewport */
+  bottom: 1.5rem;                   /* Abstand vom unteren Rand */
+  right: 1.5rem;                    /* Abstand vom rechten Rand */
+  width: 3rem;                      /* Größe des Buttons */
+  height: 3rem;
+  border: none;
+  border-radius: 50%;              /* Rundes Aussehen */
+  background-color: #ff85c1;       /* Primärfarbe */
+  color: white;                    /* Pfeilfarbe */
+  font-size: 1.5rem;               /* Pfeilgröße */
+  cursor: pointer;
+  z-index: 1000;                   /* Überlappt andere Elemente */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* leichte Schattierung */
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease,
+    opacity 0.3s;
+  opacity: 0;                      /* Anfangszustand: unsichtbar */
+  pointer-events: none;            /* Kein Klick möglich, solange unsichtbar */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Sichtbar-Zustand wird per JS/TS hinzugefügt */
+.scroll-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scroll-to-top:hover,
+.scroll-to-top:focus {
+  outline: none;
+  background-color: var(--blossom-hover-background-color);
+  box-shadow: 0 6px 12px var(--blossom-hover-glow-color);
+}
+
+.scroll-to-top:active {
+  transform: scale(1.5);
+  background-color: var(--blossom-hover-background-color);
+  background-color: var(--text-hover);
+}

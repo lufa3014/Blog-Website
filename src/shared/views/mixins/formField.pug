@@ -1,0 +1,10 @@
+.login-input
+  if labelText
+    label(for=labelFor)= labelText
+  input(
+    type=inputType,
+    name=inputName,
+    id=labelFor,
+    value=inputValue || '',
+    required
+  )

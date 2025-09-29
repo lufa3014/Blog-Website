@@ -1,0 +1,109 @@
+extends /layouts/layout.pug
+include /mixins/blogPreview.pug
+include /mixins/comment.pug
+
+block head 
+  link(rel="stylesheet", href="/styles/pages/landingPage.css")
+
+block content
+  .page-container(role="main")
+    .search
+      //- Suchformular
+      form(method="GET", action="/", role="search", aria-label="Suche")
+        label(for="search") Suche:
+        input(type="text", name="search", id="search", value=search || '', autocomplete="search")
+        input(type="submit", value="Suchen")
+
+    //- Gefundene Beiträge
+    if search      
+      section(aria-labelledby="found-heading")
+        h2#found-heading Gefundene Beiträge
+        if filteredPosts && filteredPosts.length
+          .blogpost-list(role="list")
+            each post in filteredPosts
+              //- listitem-Wrapper für bessere Struktur, ohne Styles zu brechen
+              div(role="listitem")
+                +blogPreview(post)
+        else
+          p Keine Beiträge gefunden.
+
+    //- Neueste Beiträge
+    section(aria-labelledby="newest-heading")
+      h2#newest-heading Neueste Beiträge
+      if newestPosts && newestPosts.length
+        .blogpost-list(role="list")
+          each post in newestPosts
+            div(role="listitem")
+              +blogPreview(post, true)
+      else
+        p Keine neuen Beiträge vorhanden.
+
+  //- Kommentarbereich
+  .comment-board(aria-labelledby="popular-comments-heading")
+    h2#popular-comments-heading Populärste Kommentare
+    if comments && comments.length
+      //- als Liste kenntlich machen
+      .comment-list(role="list")
+        each comment in comments
+          div(role="listitem")
+            +comment(comment, null, comment.postId, false, false)
+    else
+      p Keine Kommentare vorhanden.
+
+  .page-container
+    //- Paginierung oben
+    .pagination-block
+      .pagination-row
+        form(method="GET", action="/", aria-label="Seitengröße wählen")
+          input(type="hidden", name="search", value=search || '')
+          input(type="hidden", name="start", value=0)
+          label(for="limit") Beiträge pro Seite:
+          select(name="limit", id="limit")
+            option(value="5", selected=limit == 5) 5
+            option(value="10", selected=limit == 10) 10
+            option(value="20", selected=limit == 20) 20
+            option(value="50", selected=limit == 50) 50
+            option(value="all", selected=limit == total) Alle
+          input(type="submit", value="Anzeigen")
+        
+        if limit !== total
+          nav.pagination-controls(role="navigation", aria-label="Paginierung oben")
+            if start > 0
+              a(href=`/?start=${Math.max(start - limit, 0)}&limit=${limit}&search=${search || ''}`, rel="prev", aria-label="Vorherige Seite") ◀ Zurück
+            span(aria-live="polite") Seite #{Math.floor(start / limit) + 1} von #{Math.ceil(total / limit)}
+            if start + limit < total
+              a(href=`/?start=${start + limit}&limit=${limit}&search=${search || ''}`, rel="next", aria-label="Nächste Seite") Weiter ▶
+
+    //- Alle Beiträge
+    section(aria-labelledby="all-posts-heading")
+      h2#all-posts-heading Alle Beiträge
+      if posts && posts.length
+        .blogpost-list(role="list")
+          each post in posts
+            div(role="listitem")
+              +blogPreview(post)
+      else
+        p Keine Beiträge gefunden.
+
+    //- Paginierung unten
+    .pagination-block
+      .pagination-row
+        if limit !== total
+          nav.pagination-controls(role="navigation", aria-label="Paginierung unten")
+            if start > 0
+              a(href=`/?start=${Math.max(start - limit, 0)}&limit=${limit}&search=${search || ''}`, rel="prev", aria-label="Vorherige Seite") ◀ Zurück
+            span(aria-live="polite") Seite #{Math.floor(start / limit) + 1} von #{Math.ceil(total / limit)}
+            if start + limit < total
+              a(href=`/?start=${start + limit}&limit=${limit}&search=${search || ''}`, rel="next", aria-label="Nächste Seite") Weiter ▶
+
+        form(method="GET", action="/", aria-label="Seitengröße wählen (unten)")
+          input(type="hidden", name="search", value=search || '')
+          input(type="hidden", name="start", value=0)
+          label(for="limit-bottom") Beiträge pro Seite:
+          select(name="limit", id="limit-bottom")
+            option(value="5", selected=limit == 5) 5
+            option(value="10", selected=limit == 10) 10
+            option(value="20", selected=limit == 20) 20
+            option(value="50", selected=limit == 50) 50
+            option(value="all", selected=limit == total) Alle
+          input(type="submit", value="Anzeigen")

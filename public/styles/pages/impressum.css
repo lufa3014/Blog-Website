@@ -1,0 +1,69 @@
+/* Hintergrundbild und Basislayout */
+.impressum-background {
+  background: url('/backgrounds/impressum.jpg') repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.impressum-page {
+  background-color: var(--container-color);
+  backdrop-filter: blur(6px);
+  padding: 40px;
+  box-shadow: 0 0 20px var(--box-shadow);
+  width: 100%;
+  max-width: 100%;
+  margin: 0px auto;
+}
+
+/* Überschrift */
+.impressum-page h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--layout-text-color);
+  border-bottom: 3px solid var(--blossom-color);
+  padding-bottom: 1rem;
+}
+
+/* Absätze */
+.impressum-page p {
+  margin-bottom: 1rem;
+}
+
+.impressum-page strong {
+  color: var(--layout-text-color);
+  font-weight: bold;
+}
+
+.impressum-page a {
+  color: var(--text-hover);
+  text-decoration: none;
+}
+.impressum-page a:hover {
+  text-decoration: underline;
+}
+
+.impressum-page a:focus-visible {
+  animation: blossomBlinkGlow 1s ease-in-out infinite;
+  outline: none;
+}
+
+@media (min-width: 768px) {
+
+  .impressum-background {
+    padding: 40px 20px;
+  }
+
+  .impressum-page {
+    max-width: 1200px;
+    width: 90%;
+    padding: 20px 40px;
+    border-radius: 8px;
+  }
+
+  .impressum-page h1 {
+    font-size: 2.4rem;
+  }
+}

@@ -1,0 +1,25 @@
+footer
+  .footer-row
+    .footer-top
+      .footer-left
+        p.footer-label Erstellt am:
+        //- Statische Anzeige des Build-Timestamps (wird beim Rendern gesetzt)
+        p.footer-timestamp #{timestamp}
+
+      .footer-right
+        p.footer-label Erstellt von:
+        .authors
+          .author
+            img.authorImg1(src="/madeBy/highlander02022.jpg", alt="Florian Köster")
+            span Florian Köster
+          span &amp;
+          .author
+            img.authorImg2(src="/madeBy/captainmorgan8.jpg", alt="Lukas Frahm")
+            span Lukas Frahm
+
+    .footer-center
+      a.footer-link(href="/impressum") Impressum
+      //- Live-Uhrzeit (aktualisiert sich per clock.js)
+      p.footer-timestamp
+        time#clock(data-update-interval=settings.clockUpdateInterval)= timestamp
+
