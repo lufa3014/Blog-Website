@@ -54,4 +54,4 @@ To start the development environment:
 
 ## Download
 
-A release package is available [here](https://github.com/lufa3014/Deferred-Rendering-Engine/releases/latest)
+A release package is available [here](https://github.com/lufa3014/Blog-Website/releases/latest)
