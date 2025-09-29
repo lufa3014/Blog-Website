@@ -44,7 +44,7 @@ To start the development environment:
 ```
 
 4. Open your browser at:
-   http://localhost:8080
+   http://localhost:3000
 
 ## Gallery
 
